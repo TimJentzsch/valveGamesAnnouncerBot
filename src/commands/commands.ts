@@ -745,6 +745,24 @@ const debugCmd = new SimpleAction(
   },
 );
 
+/** Restart command, used to restart the bot by killing the process. */
+const restartCmd = new SimpleAction(
+  'restart',
+  'Restart the bot.',
+  async (message) => {
+    message
+      .getBot()
+      .logger.info(
+        `Restarting the bot as issued by user ${
+          message.user.id
+        } on channel ${message.channel.getLabel()}.`,
+      );
+
+    process.exit();
+  },
+  UserRole.OWNER,
+);
+
 /** Label command, used to change the label of the given channel. */
 const labelCmd = new TwoPartCommand(
   'label',
@@ -951,7 +969,6 @@ const commands: CommandGroup = new CommandGroup(
     aboutCmd,
     gamesCmd,
     flipCmd,
-    rollCmd,
     statsCmd,
     pingCmd,
     debugCmd,
@@ -964,6 +981,9 @@ const commands: CommandGroup = new CommandGroup(
     notifyGameSubsCmd,
     telegramCmdsCmd,
     labelCmd,
+    restartCmd,
+    // User command 'roll' (has to be after restart!, because it starts with 'r')
+    rollCmd,
   ],
 );
 
