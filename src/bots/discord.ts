@@ -415,11 +415,8 @@ export default class DiscordBot extends BotClient {
     // Author
     if (notification.author) {
       const authorMD = DiscordBot.msgFromMarkdown(notification.author.text, true);
-      if (notification.author.icon && notification.author.link) {
-        embed.setAuthor(authorMD, notification.author.icon, notification.author.link);
-      } else {
-        embed.setAuthor(authorMD);
-      }
+
+      embed.setAuthor(authorMD, notification.author.icon, notification.author.link);
     }
     // Color
     if (notification.color) {
