@@ -53,7 +53,7 @@ export class SteamNewsItem {
     return (
       new NotificationBuilder(new Date(this.date * 1000))
         .withTitle(this.title, this.url)
-        .withAuthor(this.author)
+        .withAuthor(this.author, undefined, 'https://i.imgur.com/QbzZxrC.png')
         // TODO: Fix the fomatting of the post content and reenable this line
         // .withContent(steamProcessor.process(this.contents))
         .withGameDefaults(game)
